@@ -1,15 +1,15 @@
-require 'bundler'
-Bundler.require
+# require 'bundler'
+# Bundler.require
 
 
-ActiveRecord::Base.establish_connection({
-	adapter: 'postgresql',
-	database: 'fighting_database'
-})
+# ActiveRecord::Base.establish_connection({
+# 	adapter: 'postgresql',
+# 	database: 'fighting_database'
+# })
 
-get '/' do
-	erb :index
-end
+# get '/' do
+# 	erb :index
+# end
 
 
 
