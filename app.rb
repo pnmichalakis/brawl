@@ -7,9 +7,11 @@ ActiveRecord::Base.establish_connection({
 	database: 'fighting_database'
 })
 
+get '/' do
+	erb :index
+end
 
 
 
-
-@person = @graph.get_object("me")
-@picture = @graph.get_picture("me")
+# @person = @graph.get_object("me")
+# @picture = @graph.get_picture("me")
