@@ -9,6 +9,10 @@
 
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
-
+<input id="logOut" type="button" value="logOut" onclick="logout();" />
 <div id="status">
+</div>
+
+<div class="info">
+	<%=@person["name"]%>
 </div>
