@@ -6,9 +6,10 @@ class UsersController < ApplicationController
   end
   post '/' do
   	user = User.new(params[:user])
-  	user.password = params[:password]
+    user.name = @person["name"]
+  	user.picture = @photo
+    user.dob = @person["birthday"]
   	user.save!
-  redirect '/sessions/new'
 	end
 
 end

@@ -71,6 +71,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   dotenv
+  json
   koala
   pg
   pry

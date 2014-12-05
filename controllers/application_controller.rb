@@ -17,8 +17,9 @@ enable :sessions, :method_override
 get '/' do
 	access_token = ENV['ACCESSTOKEN']
 	@graph = Koala::Facebook::API.new(access_token)
-	@person = @graph.get_object("me")
 	binding.pry
+	@person = @graph.get_object("me")
+	@photo = @graph.get_picture("me")
 	erb :index
 end
 
