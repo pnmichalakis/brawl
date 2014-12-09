@@ -10,11 +10,7 @@
 
 <%= [1, 2, 3, 4, 5].inspect; %>
 
-<p><%@users.each do |user|%></p>
-<p><%=user["name"]%></p>
-<p><%end%></p>
-<%= @session.inspect %>
-
+<p><%=@users.sample["name"]%>
 <% if @graph %>
 
   <div class="info">
