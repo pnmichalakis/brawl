@@ -15,15 +15,9 @@ enable :logging, :dump_errors, :raise_errors, :show_exceptions
 enable :sessions, :method_override
 
 	get '/' do
-		# if session_exists
-		# 	user_is_logged_in = true
-		# else
-		# 	user_is_logged_in = false
-		# end
-
 		user_is_logged_in = false
 
-		if user_is_logged_in
+		if session[:user]
 			# app code
 			# swiping and stuff
 
@@ -49,23 +43,24 @@ enable :sessions, :method_override
 			@photo = @graph.get_picture("me")
 
 			# Check if  user exists in the database
-			@user = User.find_by({fbid: params[:user]})
-			if @user != nil
-				# create a session
-				#  <--------------
-				#  <--------------
-			else
+			@user = User.find_by({fbid: @person["id"]})
+			puts "\n"
+			puts "\n"
+			puts @person.inspect
+			puts "\n"
+			puts "\n"
+
+
+			if @user == nil
 				@user = User.new
  	 	 	  @user.name = @person["name"]
  	 		  @user.picture = @photo
   	    @user.email = @person["email"]
   	    @user.fbid = @person["id"]
   	    @user.save!
-				# create a session
-				#  <--------------
-				#  <--------------
 			end
 
+			session[:user] = @user
 			redirect '/'
 		end
 
@@ -74,7 +69,7 @@ enable :sessions, :method_override
 
 
 	get '/logout' do
-		# destroy session
+		session[:user] = nil
 		redirect '/login'
 	end
 end
