@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
 	post '/' do
   	redirect '/' unless @user = User.find_by({email: params[:user]})
 	end
-	get '/destroy' do
-	  session = nil
+	delete '/' do
+  	session = nil
   	redirect '/'
 	end
 end

@@ -29,7 +29,6 @@ enable :sessions, :method_override
   	  @user.picture = @photo
       @user.email = @person["email"]
       @user.fbid = @person["id"]
-      binding.pry
   	  @user.save!
 			# Create a user in the DB based on facebook credentials
 

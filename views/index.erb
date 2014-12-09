@@ -27,8 +27,11 @@
   </div>
 
 
-  <a href="/sessions/destroy" >Logout</a>
-
+ <!--  <a href="/sessions/destroy" >Logout</a> -->
+  <form action="/sessions" method='post'>
+    <input type="hidden" name='_method' value='delete'>
+    <input type="submit" value='Log-Out'>
+  </form>
 <% else %>
 
   <a href="<%= @auth_url %>" >Login</a>
