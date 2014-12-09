@@ -21,14 +21,15 @@ enable :sessions, :method_override
 		if params['code']
 			@code = params['code']
 			@access_token = @oauth.get_access_token(@code)
-
 			@graph = Koala::Facebook::API.new(@access_token)
 			@person = @graph.get_object("me")
 			@photo = @graph.get_picture("me")
-			@user = User.new(params[:user])
+			@user = User.new
    	  @user.name = @person["name"]
   	  @user.picture = @photo
-      @user.dob = @person["birthday"]
+      @user.email = @person["email"]
+      @user.fbid = @person["id"]
+      binding.pry
   	  @user.save!
 			# Create a user in the DB based on facebook credentials
 
