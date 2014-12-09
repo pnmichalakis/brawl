@@ -17,7 +17,11 @@ enable :sessions, :method_override
 	get '/' do
 		user_is_logged_in = false
 
+
+
 		if session[:user]
+			@session = session[:user];
+			@users = User.all
 			# app code
 			# swiping and stuff
 
@@ -49,6 +53,7 @@ enable :sessions, :method_override
 			puts @person.inspect
 			puts "\n"
 			puts "\n"
+
 
 
 			if @user == nil

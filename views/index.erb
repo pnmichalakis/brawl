@@ -8,6 +8,12 @@
 </div>
 
 
+<%= [1, 2, 3, 4, 5].inspect; %>
+
+<p><%@users.each do |user|%></p>
+<p><%=user["name"]%></p>
+<p><%end%></p>
+<%= @session.inspect %>
 
 <% if @graph %>
 
@@ -15,6 +21,7 @@
     <img src="<%= @photo %>" >
     <p>
   	Name:	<%=@person["name"]%>
+    <!-- <%= @person %> -->
   	</p>
   	<p>
   	DOB:	<%=@person["birthday"]%>
