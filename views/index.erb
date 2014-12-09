@@ -8,13 +8,11 @@
 </div>
 
 
-<div id="status">
-</div>
 
 <% if @graph %>
 
   <div class="info">
-    <img src=<%=@photo%>>
+    <img src="<%= @photo %>" >
     <p>
   	Name:	<%=@person["name"]%>
   	</p>
@@ -27,15 +25,9 @@
   </div>
 
 
- <!--  <a href="/sessions/destroy" >Logout</a> -->
+<% else %>
   <form action="/sessions" method='post'>
     <input type="hidden" name='_method' value='delete'>
     <input type="submit" value='Log-Out'>
   </form>
-<% else %>
-
-  <a href="<%= @auth_url %>" >Login</a>
-  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-  </fb:login-button>
-
 <% end %>
