@@ -7,21 +7,32 @@
   data-show-faces="true">
 </div>
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-<input id="logOut" type="button" value="logOut" onclick="logout();" />
+
 <div id="status">
 </div>
 
-<div class="info">
-  <img src=<%=@photo%>>
-  <p>
-	Name:	<%=@person["name"]%>
-	</p>
-	<p>
-	DOB:	<%=@person["birthday"]%>
-  </p>
-  <p> 	
-	Political Views: <%=@person["political"]%>
-	<p>
-</div>
+<% if @graph %>
+
+  <div class="info">
+    <img src=<%=@photo%>>
+    <p>
+  	Name:	<%=@person["name"]%>
+  	</p>
+  	<p>
+  	DOB:	<%=@person["birthday"]%>
+    </p>
+    <p> 	
+  	Political Views: <%=@person["political"]%>
+  	<p>
+  </div>
+
+
+  <a href="/" >Logout</a>
+
+<% else %>
+
+  <a href="<%= @auth_url %>" >Login</a>
+  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+  </fb:login-button>
+
+<% end %>
