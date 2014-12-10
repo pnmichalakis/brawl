@@ -7,8 +7,14 @@
   data-show-faces="true">
 </div>
 
-<div class="opponent"><%=@users.sample["name"]%></div>
+<a href="/profiles/<%=@opponent["id"]%>">
+  <div class="opponent">
+    <%=@opponent["name"]%>
+  </div>
+</a>
+
 <p></p>
+
 <div class="buttonholder">
   <button class="no">I'm good</button>
   <button class="yes">Let's scrap</button>

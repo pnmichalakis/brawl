@@ -22,6 +22,7 @@ enable :sessions, :method_override
 		if session[:user]
 			@session = session[:user];
 			@users = User.all
+			@opponent = @users.sample
 			# app code
 			# swiping and stuff
 			#index on username database?
@@ -81,6 +82,8 @@ enable :sessions, :method_override
 
   get '/profiles/:id' do
     @user = session[:user]
+    @users = User.all
+    @opponent = User.find(params[:id])
     erb :'/users/show'
   end
 
