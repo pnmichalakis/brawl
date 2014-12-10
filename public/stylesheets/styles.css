@@ -1,3 +1,16 @@
 body {
 	background-color: bisque;
 }
+
+.opponent {
+	text-align: center;
+	background-color: grey;
+	border-radius: 10px;
+	height: 400px;
+	width: 500px;
+	margin: 0 auto;
+}
+
+.buttonholder {
+	text-align: center;
+}

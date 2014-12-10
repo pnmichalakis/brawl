@@ -24,7 +24,7 @@ enable :sessions, :method_override
 			@users = User.all
 			# app code
 			# swiping and stuff
-
+			#index on username database?
 			erb :index
 		else
 			redirect '/login'

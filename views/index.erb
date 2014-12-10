@@ -7,10 +7,12 @@
   data-show-faces="true">
 </div>
 
-
-<%= [1, 2, 3, 4, 5].inspect; %>
-
-<p><%=@users.sample["name"]%>
+<div class="opponent"><%=@users.sample["name"]%></div>
+<p></p>
+<div class="buttonholder">
+  <button class="no">I'm good</button>
+  <button class="yes">Let's scrap</button>
+</div>
 <% if @graph %>
 
   <div class="info">
