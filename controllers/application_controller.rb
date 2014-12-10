@@ -36,7 +36,7 @@ enable :sessions, :method_override
 	get '/login' do
 		# prep the 'login with facebook link'
 		@oauth    = Koala::Facebook::OAuth.new(ENV['APPID'], ENV['APPSECRET'], "http://localhost:9292/login")
-		@auth_url = @oauth.url_for_oauth_code
+		@auth_url = @oauth.url_for_oauth_code(:permissions => "email", :permissions => "user_photos", :permissions => "user_birthday")
 
 		# authenticate user against facebook
 		if params['code']
@@ -62,6 +62,7 @@ enable :sessions, :method_override
  	 		  @user.picture = @photo
   	    @user.email = @person["email"]
   	    @user.fbid = @person["id"]
+  	    @user.dob = @person["birthday"]
   	    @user.save!
 			end
 
