@@ -78,6 +78,12 @@ enable :sessions, :method_override
 		session[:user] = nil
 		redirect '/login'
 	end
+
+  get '/profiles/:id' do
+    @user = session[:user]
+    erb :'/users/show'
+  end
+
 end
 
 

@@ -31,6 +31,7 @@
 
 
 <% else %>
+<a href="/profiles/<%=session[:user]["id"]%>">Profile</a>
   <form action="/logout" method='get'>
     <input type="hidden" name='_method' value='delete'>
     <input type="submit" value='Log-Out'>
