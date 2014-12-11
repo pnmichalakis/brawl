@@ -9,7 +9,7 @@ ActiveRecord::Base.establish_connection({
 	})
 
 set :views, File.expand_path('../../views',__FILE__)
-set :public, File.expand_path('../../public',__FILE__)
+set :public_folder, File.expand_path('../../public',__FILE__)
 
 enable :logging, :dump_errors, :raise_errors, :show_exceptions
 enable :sessions, :method_override
@@ -32,6 +32,12 @@ enable :sessions, :method_override
 		end
 	end
 
+	post '/likes' do
+		user_id = session["user"]["id"]
+		opponent_fb_id = params['opponent_fb_id']
+		Like.create({user_id: user_id, opponent_fb_id: opponent_fb_id})
+		redirect '/'
+	end
 
 
 	get '/login' do
@@ -75,7 +81,6 @@ enable :sessions, :method_override
 		erb :login
 	end
 
-
 	get '/logout' do
 		session[:user] = nil
 		redirect '/login'
@@ -94,6 +99,7 @@ enable :sessions, :method_override
   	person.update({bio: edit_bio})
   	redirect '/'
 	end
+
 end
 
 

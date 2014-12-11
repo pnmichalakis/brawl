@@ -17,8 +17,13 @@
 <p></p>
 
 <div class="buttonholder">
-  <button class="no">I'm good</button>
-  <button class="yes">Let's scrap</button>
+  <form action="/likes" method="post">
+    <input type="hidden" name="opponent_fb_id"value="<%=@opponent["fbid"]%>">
+    <input type="submit" value="Let's Scrap">
+  </form>
+  <form action="/dislikes" method="post">
+    <button class="yes">I'm Good</button>
+  </form>
 </div>
 <% if @graph %>
 
