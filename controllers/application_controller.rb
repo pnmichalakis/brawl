@@ -87,7 +87,13 @@ enable :sessions, :method_override
     @person = User.find(params[:id])
     erb :'/users/show'
   end
-
+  patch '/profiles/:id/bio' do
+ 		person = User.find(params[:id])
+ 		bio = person["bio"]
+  	edit_bio = params['edit_bio']
+  	person.update({bio: edit_bio})
+  	redirect '/'
+	end
 end
 
 

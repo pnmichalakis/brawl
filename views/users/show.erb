@@ -5,7 +5,7 @@
 <% if @user == @person %>
 	<form action="/profiles/<%=@person.id%>/bio" method="post">
 	<input type="hidden" name="_method" value="patch">
-	<textarea class="editbio" name="bio" cols="20" rows="10"><%=@person.bio%></textarea>
+	<textarea class="editbio" name="edit_bio" cols="20" rows="10"><%=@person.bio%></textarea>
 	<p></p>
 	<input type="submit">
 <% else %>
