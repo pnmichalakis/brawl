@@ -32,14 +32,6 @@ enable :sessions, :method_override
 		end
 	end
 
-	post '/likes' do
-		user_id = session["user"]["id"]
-		opponent_fb_id = params['opponent_fb_id']
-		Like.create({user_id: user_id, opponent_fb_id: opponent_fb_id})
-		redirect '/'
-	end
-
-
 	get '/login' do
 		# prep the 'login with facebook link'
 		@oauth    = Koala::Facebook::OAuth.new(ENV['APPID'], ENV['APPSECRET'], "http://localhost:9292/login")
@@ -79,6 +71,20 @@ enable :sessions, :method_override
 		end
 
 		erb :login
+	end
+
+	post '/likes' do
+		user_id = session["user"]["id"]
+		opponent_fb_id = params['opponent_fb_id']
+		Like.create({user_id: user_id, opponent_fb_id: opponent_fb_id})
+		redirect '/'
+	end
+
+	post '/dislikes' do
+		user_id = session["user"]["id"]
+		opponent_fb_id = params['opponent_fb_id']
+		Dislike.create({user_id: user_id, opponent_fb_id: opponent_fb_id})
+		redirect '/'
 	end
 
 	get '/logout' do

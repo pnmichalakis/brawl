@@ -22,7 +22,8 @@
     <input type="submit" value="Let's Scrap">
   </form>
   <form action="/dislikes" method="post">
-    <button class="yes">I'm Good</button>
+    <input type="hidden" name="opponent_fb_id"value="<%=@opponent["fbid"]%>">
+    <input type="submit" value="I'm good">
   </form>
 </div>
 <% if @graph %>
