@@ -84,7 +84,7 @@ enable :sessions, :method_override
   get '/profiles/:id' do
     @user = session[:user]
     @users = User.all
-    @opponent = User.find(params[:id])
+    @person = User.find(params[:id])
     erb :'/users/show'
   end
 

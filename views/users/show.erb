@@ -1,7 +1,14 @@
-<h1><%=@opponent.name%></h1>
-<img src="<%=@opponent.picture%>" alt="">
+<h1><%=@person.name%></h1>
+<img src="<%=@person.picture%>" alt="">
 
 <h3>About me:</h3>
-
-<div class="bio"><%=@opponent.bio%></div>
+<% if @user == @person %>
+	<form action="/profiles/<%=@person.id%>/bio" method="post">
+	<input type="hidden" name="_method" value="patch">
+	<textarea class="editbio" name="bio" cols="20" rows="10"><%=@person.bio%></textarea>
+	<p></p>
+	<input type="submit">
+<% else %>
+	<div class="bio"><%=@person.bio%></div>
+<% end %>
 <a href="/">Home</a>
