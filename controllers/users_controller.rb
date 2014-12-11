@@ -12,9 +12,9 @@ class UsersController < ApplicationController
  #  	user.save!
 	# end
 
-  get '/:id' do
-    @user = User.find_by({fbid: @person["id"]})
-    erb :'/users/show'
-  end
+  # get '/:id' do
+  #   @user = User.find_by({fbid: @person["id"]})
+  #   erb :'/users/show'
+  # end
 
 end

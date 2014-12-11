@@ -45,7 +45,7 @@ enable :sessions, :method_override
 			@access_token = @oauth.get_access_token(@code)
 			@graph = Koala::Facebook::API.new(@access_token)
 			@person = @graph.get_object("me")
-			@photo = @graph.get_picture("me")
+			@photo = @graph.get_picture("me", :type => "large")
 
 			# Check if  user exists in the database
 			@user = User.find_by({fbid: @person["id"]})
@@ -64,6 +64,7 @@ enable :sessions, :method_override
   	    @user.email = @person["email"]
   	    @user.fbid = @person["id"]
   	    @user.dob = @person["birthday"]
+  	    @user.bio = @user.name + " hasn't said anything about him/herself, but is probably full of moxie!"
   	    @user.save!
 			end
 
