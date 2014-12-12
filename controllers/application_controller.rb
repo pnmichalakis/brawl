@@ -22,6 +22,14 @@ enable :sessions, :method_override
 		if session[:user]
 			@session = session[:user];
 			@users = User.all
+			@previouslikes = @session.likes.map do |like|
+				like.opponent_fb_id
+			end
+			@previousdislikes = @session.dislikes.map do |dislike|
+				dislike.opponent_fb_id
+			end
+			@previous = @previousdislikes + @previouslikes
+			binding.pry
 			@opponent = @users.sample
 			# app code
 			# swiping and stuff
@@ -47,11 +55,6 @@ enable :sessions, :method_override
 
 			# Check if  user exists in the database
 			@user = User.find_by({fbid: @person["id"]})
-			puts "\n"
-			puts "\n"
-			puts @person.inspect
-			puts "\n"
-			puts "\n"
 
 
 
