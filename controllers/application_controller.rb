@@ -29,8 +29,10 @@ enable :sessions, :method_override
 				dislike.opponent_fb_id
 			end
 			@previous = @previousdislikes + @previouslikes
-			binding.pry
 			@opponent = @users.sample
+			if @previous.include? @opponent["fbid"].to_i == true
+				@users.sample
+			end
 			# app code
 			# swiping and stuff
 			#index on username database?
