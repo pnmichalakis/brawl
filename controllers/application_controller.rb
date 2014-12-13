@@ -1,26 +1,26 @@
 class ApplicationController < Sinatra::Base
 	helpers Sinatra::AuthenticationHelper
-require 'koala'
-require 'dotenv'
-Dotenv.load
-ActiveRecord::Base.establish_connection({
-	adapter: 'postgresql',
-	database: 'fighting_database'
+	require 'koala'
+	require 'dotenv'
+	Dotenv.load
+	ActiveRecord::Base.establish_connection({
+		adapter: 'postgresql',
+		database: 'fighting_database'
 	})
 
-set :views, File.expand_path('../../views',__FILE__)
-set :public_folder, File.expand_path('../../public',__FILE__)
+	set :views, File.expand_path('../../views',__FILE__)
+	set :public_folder, File.expand_path('../../public',__FILE__)
 
-enable :logging, :dump_errors, :raise_errors, :show_exceptions
-enable :sessions, :method_override
+	enable :logging, :dump_errors, :raise_errors, :show_exceptions
+	enable :method_override
+	use Rack::Session::Pool
 
 	get '/' do
 		user_is_logged_in = false
 
 
-
 		if session[:user]
-			@session = session[:user];
+			@session = session[:user]
 			@users = User.all
 			@previouslikes = @session.likes.map do |like|
 				like.opponent_fb_id
@@ -33,6 +33,9 @@ enable :sessions, :method_override
 			if @previous.include? @opponent["fbid"].to_i == true
 				@users.sample
 			end
+			# if @opponent["id"] == @session["id"]
+			# 	@users.sample
+			# end
 			# app code
 			# swiping and stuff
 			#index on username database?
@@ -45,7 +48,9 @@ enable :sessions, :method_override
 	get '/login' do
 		# prep the 'login with facebook link'
 		@oauth    = Koala::Facebook::OAuth.new(ENV['APPID'], ENV['APPSECRET'], "http://localhost:9292/login")
-		@auth_url = @oauth.url_for_oauth_code(:permissions => "email", :permissions => "user_photos", :permissions => "user_birthday")
+		@auth_url = @oauth.url_for_oauth_code(:permissions => ["email", "user_photos", "user_birthday"])
+		#:permissions => "user_photos",
+		#:permissions => "user_birthday")
 
 		# authenticate user against facebook
 		if params['code']
@@ -54,7 +59,6 @@ enable :sessions, :method_override
 			@graph = Koala::Facebook::API.new(@access_token)
 			@person = @graph.get_object("me")
 			@photo = @graph.get_picture("me", :type => "large")
-
 			# Check if  user exists in the database
 			@user = User.find_by({fbid: @person["id"]})
 
@@ -62,13 +66,13 @@ enable :sessions, :method_override
 
 			if @user == nil
 				@user = User.new
- 	 	 	  @user.name = @person["name"]
- 	 		  @user.picture = @photo
-  	    @user.email = @person["email"]
-  	    @user.fbid = @person["id"]
-  	    @user.dob = @person["birthday"]
-  	    @user.bio = @user.name + " hasn't said anything about him/herself, but is probably full of moxie!"
-  	    @user.save!
+				@user.name = @person["name"]
+				@user.picture = @photo
+				@user.email = @person["email"]
+				@user.fbid = @person["id"]
+				@user.dob = @person["birthday"]
+				@user.bio = @user.name + " hasn't said anything about him/herself, but is probably full of moxie!"
+				@user.save!
 			end
 
 			session[:user] = @user
@@ -97,18 +101,18 @@ enable :sessions, :method_override
 		redirect '/login'
 	end
 
-  get '/profiles/:id' do
-    @user = session[:user]
-    @users = User.all
-    @person = User.find(params[:id])
-    erb :'/users/show'
-  end
-  patch '/profiles/:id/bio' do
- 		person = User.find(params[:id])
- 		bio = person["bio"]
-  	edit_bio = params['edit_bio']
-  	person.update({bio: edit_bio})
-  	redirect '/'
+	get '/profiles/:id' do
+		@user = session[:user]
+		@users = User.all
+		@person = User.find(params[:id])
+		erb :'/users/show'
+	end
+	patch '/profiles/:id/bio' do
+		person = User.find(params[:id])
+		bio = person["bio"]
+		edit_bio = params['edit_bio']
+		person.update({bio: edit_bio})
+		redirect '/'
 	end
 
 end
