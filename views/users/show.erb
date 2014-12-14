@@ -1,14 +1,19 @@
-<h1 class="title"><%=@person.name%></h1>
+<div class="profile">
+<h3><%=@person.name%></h1>
 <img src="<%=@person.picture%>" alt="">
 
 <h3>About me:</h3>
 <% if @user == @person %>
 	<form action="/profiles/<%=@person.id%>/bio" method="post">
 	<input type="hidden" name="_method" value="patch">
-	<textarea class="editbio" name="edit_bio" cols="20" rows="10"><%=@person.bio%></textarea>
-	<p></p>
+	<textarea class="editbio" name="edit_bio" cols="30" rows="30"><%=@person.bio%></textarea>
+	<br>
 	<input type="submit">
 <% else %>
 	<div class="bio"><%=@person.bio%></div>
 <% end %>
-<a href="/">Home</a>
+<br>
+<form action="/">
+	<input type="submit" value="Home">
+</form>
+</div>

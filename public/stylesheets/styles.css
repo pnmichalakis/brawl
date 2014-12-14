@@ -32,3 +32,17 @@ body {
 	color: white;
 }
 
+h3 {
+	color: white;
+}
+
+.editbio {
+	color: white;
+	background-color: black;
+}
+
+.profile {
+	text-align: center;
+	color: white;
+	margin: 0 auto;
+}
