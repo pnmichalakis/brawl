@@ -7,16 +7,15 @@
     <input type="submit" value='Log-Out'>
   </form>
 
-
-<a href="/profiles/<%=@opponent["id"]%>">
   <div class="opponent">
     <%=@opponent["name"]%>
-    <p></p>
+    <br>
     <img src="<%=@opponent["picture"]%>">
+    <br>
+    <%=@opponent["bio"]%>
   </div>
-</a>
 
-<p></p>
+<br>
 
 <div class="buttonholder">
   <table class="table">

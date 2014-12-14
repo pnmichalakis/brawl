@@ -7,7 +7,7 @@ body {
 	text-align: center;
 	background-color: black;
 	border-radius: 10px;
-	border: 2px solid white;
+	border: 4px solid white;
 	height: 400px;
 	width: 500px;
 	margin: 0 auto;
@@ -20,6 +20,7 @@ body {
 .title {
 	color: white;
 	text-align: center;
+	font-family: Sinking Ship;
 }
 
 .table {
