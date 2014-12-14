@@ -1,4 +1,12 @@
 <h1 class="title">FISTICUFFS</h1>
+<form action="/profiles/<%=session[:user]["id"]%>">
+  <input type="submit" value="Profile">
+</form>
+  <form action="/logout" method='get'>
+    <input type="hidden" name='_method' value='delete'>
+    <input type="submit" value='Log-Out'>
+  </form>
+
 
 <a href="/profiles/<%=@opponent["id"]%>">
   <div class="opponent">
@@ -11,19 +19,21 @@
 <p></p>
 
 <div class="buttonholder">
+  <table class="table">
+    <tr>
+      <td>
   <form action="/likes" method="post">
     <input type="hidden" name="opponent_fb_id"value="<%=@opponent["fbid"]%>">
     <input type="submit" value="Let's Scrap">
   </form>
+     </td>
+     <td>
   <form action="/dislikes" method="post">
     <input type="hidden" name="opponent_fb_id"value="<%=@opponent["fbid"]%>">
     <input type="submit" value="I'm good">
   </form>
+    </td>
+    </tr>
+  </table>
 </div>
-
-<a href="/profiles/<%=session[:user]["id"]%>">Profile</a>
-  <form action="/logout" method='get'>
-    <input type="hidden" name='_method' value='delete'>
-    <input type="submit" value='Log-Out'>
-  </form>
 

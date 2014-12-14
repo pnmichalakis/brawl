@@ -31,7 +31,7 @@ class ApplicationController < Sinatra::Base
 			@previous = @previousdislikes + @previouslikes
 			@opponent = @users.sample
 			if @previous.include? @opponent["fbid"].to_i == true
-				@users.sample
+				@opponent = @users.sample
 			end
 			# if @opponent["id"] == @session["id"]
 			# 	@users.sample

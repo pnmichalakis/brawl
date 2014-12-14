@@ -15,10 +15,19 @@ body {
 
 .buttonholder {
 	text-align: center;
-	display: inline;
 }
 
 .title {
 	color: white;
 	text-align: center;
 }
+
+.table {
+	border: 0;
+	margin: 0 auto;
+}
+
+.logindiv {
+	text-align: center;
+}
+
