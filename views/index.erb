@@ -1,15 +1,9 @@
-<h1>Hello you dick</h1>
-
-<div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
-</div>
+<h1 class="title">FISTICUFFS</h1>
 
 <a href="/profiles/<%=@opponent["id"]%>">
   <div class="opponent">
     <%=@opponent["name"]%>
+    <p></p>
     <img src="<%=@opponent["picture"]%>">
   </div>
 </a>
@@ -26,27 +20,10 @@
     <input type="submit" value="I'm good">
   </form>
 </div>
-<% if @graph %>
 
-  <div class="info">
-    <img src="<%= @photo %>" >
-    <p>
-  	Name:	<%=@person["name"]%>
-    <!-- <%= @person %> -->
-  	</p>
-  	<p>
-  	DOB:	<%=@person["birthday"]%>
-    </p>
-    <p> 	
-  	Political Views: <%=@person["political"]%>
-  	<p>
-  </div>
-
-
-<% else %>
 <a href="/profiles/<%=session[:user]["id"]%>">Profile</a>
   <form action="/logout" method='get'>
     <input type="hidden" name='_method' value='delete'>
     <input type="submit" value='Log-Out'>
   </form>
-<% end %>
+
