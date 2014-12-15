@@ -3,6 +3,9 @@
   <form action="/profiles/<%=session[:user]["id"]%>">
     <input type="submit" value="Profile">
   </form>
+  <form action="/profiles/<%=session[:user]["id"]%>/messages">
+    <input type="submit" value="Message">
+  </form>
   <form action="/logout" method='get'>
     <input type="hidden" name='_method' value='delete'>
     <input type="submit" value='Log-Out'>
