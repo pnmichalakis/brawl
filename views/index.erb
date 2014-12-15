@@ -1,12 +1,14 @@
 <h1 class="title">FISTICUFFS</h1>
-<form action="/profiles/<%=session[:user]["id"]%>">
-  <input type="submit" value="Profile">
-</form>
+  <div class="nav">
+  <form action="/profiles/<%=session[:user]["id"]%>">
+    <input type="submit" value="Profile">
+  </form>
   <form action="/logout" method='get'>
     <input type="hidden" name='_method' value='delete'>
     <input type="submit" value='Log-Out'>
   </form>
-
+  </div>
+  
   <div class="opponent">
     <h3><%=@opponent["name"]%></h3>
     <br>

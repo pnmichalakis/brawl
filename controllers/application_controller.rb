@@ -33,10 +33,7 @@ class ApplicationController < Sinatra::Base
 			@opponent = @potential.sample
 			# binding.pry
 			# if @previous.include? @opponent == true
-			# 	@users.delete(@opponent)
-			# end
-			# if @opponent["id"] == @session["id"]
-			# 	@users.sample
+			# 	@potential - [@opponent]
 			# end
 			# app code
 			# swiping and stuff

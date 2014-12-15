@@ -13,6 +13,11 @@ body {
 	margin: 0 auto;
 }
 
+.nav {
+	float: right;
+	padding-right: 20px;
+}
+
 .buttonholder {
 	text-align: center;
 }
