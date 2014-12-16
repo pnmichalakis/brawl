@@ -22,20 +22,32 @@ class ApplicationController < Sinatra::Base
 		if session[:user]
 			@session = session[:user]
 			@users = User.all
+			@removed = []
+			@potential = []
 			@non_user_users = @users - [@session]
-			# @previouslikes = @session.likes.map do |like|
-			# 	like.opponent_fb_id
-			# end
-			# @previousdislikes = @session.dislikes.map do |dislike|
-			# 	dislike.opponent_fb_id
-			# end
-			# @previous = @previousdislikes + @previouslikes
+			@previouslikes = @session.likes.map do |like|
+				like.opponent_id
+			end
+			@previousdislikes = @session.dislikes.map do |dislike|
+				dislike.opponent_id
+			end
+			@previous = @previousdislikes + @previouslikes
 			# if @previous.include? @opponent == true
-			# 	@potential - [@opponent] && @potential.sample
+			# 	@non_user_users - [@opponent] && @opponent = @non_user_users.sample
 			# end
-			@opponent = @non_user_users.sample
-
-
+			@non_user_users.each do |x|
+        exclude = false
+        @previous.each do |y|
+          if x.id == y
+            exclude = true
+            @removed << x
+          end
+        end
+        if !exclude
+          @potential << x
+        end
+      end
+			@opponent = @potential.sample
 			# app code
 			# swiping and stuff
 			#index on username database?

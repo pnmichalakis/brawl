@@ -11,7 +11,7 @@
     <input type="submit" value='Log-Out'>
   </form>
   </div>
-  
+  <%if @opponent != nil %>
   <div class="opponent">
     <h3><%=@opponent["name"]%></h3>
     <br>
@@ -40,4 +40,8 @@
     </tr>
   </table>
 </div>
-
+<%else%>
+  <div class="opponent">
+    <h3>No New Users!</h3>
+  </div>
+<%end%>
