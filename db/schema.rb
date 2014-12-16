@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216204314) do
+ActiveRecord::Schema.define(version: 20141216212631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,12 +30,19 @@ ActiveRecord::Schema.define(version: 20141216204314) do
     t.integer  "opponent_id"
   end
 
+  create_table "matches", force: true do |t|
+    t.integer  "user_id1"
+    t.integer  "user_id2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "messages", force: true do |t|
     t.integer  "sender_id"
-    t.string   "recipient_id"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "recipient_id"
   end
 
   create_table "users", force: true do |t|
