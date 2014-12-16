@@ -32,9 +32,6 @@ class ApplicationController < Sinatra::Base
 				dislike.opponent_id
 			end
 			@previous = @previousdislikes + @previouslikes
-			# if @previous.include? @opponent == true
-			# 	@non_user_users - [@opponent] && @opponent = @non_user_users.sample
-			# end
 			@non_user_users.each do |x|
         exclude = false
         @previous.each do |y|
@@ -119,6 +116,7 @@ class ApplicationController < Sinatra::Base
 		@person = User.find(params[:id])
 		erb :'/users/show'
 	end
+
 	patch '/profiles/:id/bio' do
 		person = User.find(params[:id])
 		bio = person["bio"]

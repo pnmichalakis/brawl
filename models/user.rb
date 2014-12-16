@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	has_many(:matches)
 	has_many(:messages)
 	has_many(:likes)
 	has_many(:dislikes)
