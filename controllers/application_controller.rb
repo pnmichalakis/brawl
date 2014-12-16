@@ -33,6 +33,7 @@ class ApplicationController < Sinatra::Base
 			if @previous.include? @opponent == true
 				@potential - [@opponent] && @potential.sample
 			end
+			binding.pry
 			@opponent = @non_user_users.sample
 
 
@@ -84,15 +85,15 @@ class ApplicationController < Sinatra::Base
 
 	post '/likes' do
 		user_id = session["user"]["id"]
-		opponent_fb_id = params['opponent_fb_id']
-		Like.create({user_id: user_id, opponent_fb_id: opponent_fb_id})
+		opponent_id = params['opponent_id']
+		Like.create({user_id: user_id, opponent_id: opponent_id})
 		redirect '/'
 	end
 
 	post '/dislikes' do
 		user_id = session["user"]["id"]
-		opponent_fb_id = params['opponent_fb_id']
-		Dislike.create({user_id: user_id, opponent_fb_id: opponent_fb_id})
+		opponent_id = params['opponent_id']
+		Dislike.create({user_id: user_id, opponent_id: opponent_id})
 		redirect '/'
 	end
 

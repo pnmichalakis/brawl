@@ -1,5 +1,6 @@
 console.log("filibuster")
 
+$(document).ready(function(){
 $(document).keydown(function(e) {
     switch(e.which) {
         case 37: // left
@@ -15,9 +16,19 @@ $(document).keydown(function(e) {
         break;
 
         // case 40: // down
-        // console.log("down");
         // break;
         default: return; // exit this handler for other keys
     }
     e.preventDefault(); // prevent the default action (scroll / move caret)
 });
+});
+
+// $(document).ready(function() { 
+//  // bind 'myForm' and provide a simple callback function 
+//    $('#like').ajaxForm(function() { 
+//      alert("Liked!"); 
+//     });
+//    $('#dislike').ajaxForm(function() { 
+//      alert("disliked!"); 
+//     });  
+//   });
