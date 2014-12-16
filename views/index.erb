@@ -11,7 +11,7 @@
     <input type="submit" value='Log-Out'>
   </form>
   </div>
-  <%if @opponent != nil %>
+<%if @opponent != nil %>
   <div class="opponent">
     <h3><%=@opponent["name"]%></h3>
     <br>
@@ -22,22 +22,22 @@
 
 <br>
 
-<div class="buttonholder">
-  <table class="table">
-    <tr>
-      <td>
-  <form id="like" action="/likes" method="post">
-    <input type="hidden" name="opponent_id"value="<%=@opponent["id"]%>">
-    <input type="submit" value="Let's Scrap">
-  </form>
-     </td>
-     <td>
-  <form id="dislike" action="/dislikes" method="post">
-    <input type="hidden" name="opponent_id"value="<%=@opponent["id"]%>">
-    <input type="submit" value="I'm good">
-  </form>
-    </td>
-    </tr>
+  <div class="buttonholder">
+    <table class="table">
+      <tr>
+        <td>
+          <form id="like" action="/likes" method="post">
+          <input type="hidden" name="opponent_id"value="<%=@opponent["id"]%>">
+          <input type="submit" value="Let's Scrap">
+          </form>
+        </td>
+        <td>
+          <form id="dislike" action="/dislikes" method="post">
+          <input type="hidden" name="opponent_id"value="<%=@opponent["id"]%>">
+          <input type="submit" value="I'm good">
+          </form>
+        </td>
+      </tr>
   </table>
 </div>
 <%else%>
