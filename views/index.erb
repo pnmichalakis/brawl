@@ -26,13 +26,13 @@
   <table class="table">
     <tr>
       <td>
-  <form action="/likes" method="post">
+  <form id="like" action="/likes" method="post">
     <input type="hidden" name="opponent_fb_id"value="<%=@opponent["fbid"]%>">
     <input type="submit" value="Let's Scrap">
   </form>
      </td>
      <td>
-  <form action="/dislikes" method="post">
+  <form id="dislike" action="/dislikes" method="post">
     <input type="hidden" name="opponent_fb_id"value="<%=@opponent["fbid"]%>">
     <input type="submit" value="I'm good">
   </form>

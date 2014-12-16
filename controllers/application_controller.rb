@@ -22,19 +22,20 @@ class ApplicationController < Sinatra::Base
 		if session[:user]
 			@session = session[:user]
 			@users = User.all
-			@potential = @users - [@session]
-			# @previouslikes = @session.likes.map do |like|
-			# 	like.opponent_fb_id
-			# end
-			# @previousdislikes = @session.dislikes.map do |dislike|
-			# 	dislike.opponent_fb_id
-			# end
-			# @previous = @previousdislikes + @previouslikes
-			@opponent = @potential.sample
-			# binding.pry
-			# if @previous.include? @opponent == true
-			# 	@potential - [@opponent]
-			# end
+			@non_user_users = @users - [@session]
+			@previouslikes = @session.likes.map do |like|
+				like.opponent_fb_id
+			end
+			@previousdislikes = @session.dislikes.map do |dislike|
+				dislike.opponent_fb_id
+			end
+			@previous = @previousdislikes + @previouslikes
+			if @previous.include? @opponent == true
+				@potential - [@opponent] && @potential.sample
+			end
+			@opponent = @non_user_users.sample
+
+
 			# app code
 			# swiping and stuff
 			#index on username database?
