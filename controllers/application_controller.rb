@@ -23,17 +23,16 @@ class ApplicationController < Sinatra::Base
 			@session = session[:user]
 			@users = User.all
 			@non_user_users = @users - [@session]
-			@previouslikes = @session.likes.map do |like|
-				like.opponent_fb_id
-			end
-			@previousdislikes = @session.dislikes.map do |dislike|
-				dislike.opponent_fb_id
-			end
-			@previous = @previousdislikes + @previouslikes
-			if @previous.include? @opponent == true
-				@potential - [@opponent] && @potential.sample
-			end
-			binding.pry
+			# @previouslikes = @session.likes.map do |like|
+			# 	like.opponent_fb_id
+			# end
+			# @previousdislikes = @session.dislikes.map do |dislike|
+			# 	dislike.opponent_fb_id
+			# end
+			# @previous = @previousdislikes + @previouslikes
+			# if @previous.include? @opponent == true
+			# 	@potential - [@opponent] && @potential.sample
+			# end
 			@opponent = @non_user_users.sample
 
 
