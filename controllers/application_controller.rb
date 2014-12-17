@@ -81,6 +81,9 @@ class ApplicationController < Sinatra::Base
 				@user.email = @person["email"]
 				@user.fbid = @person["id"]
 				@user.dob = @person["birthday"]
+				@user.height = @user.name + " left this field blank!"
+				@user.weight = @user.name + " left this field blank!"
+				@user.location = @user.name + " left this field blank!"
 				@user.bio = @user.name + " hasn't said anything about him/herself, but is probably full of moxie!"
 				@user.save!
 			end
@@ -96,17 +99,21 @@ class ApplicationController < Sinatra::Base
 		user_id = session["user"]["id"]
 		opponent_id = params["opponent_id"]
 		status = params[:status]
-		binding.pry
+					binding.pry
 		if params[:status] == 1
-			Match.where("opponent_id IS NOT NULL")
-			Match.create({user_id: user_id, opponent_id: opponent_id, status: status})
+			if Match.where("opponent_id = ? and user_id = ?", opponent_id, user_id) != []
+				matched_match = Match.where("opponent_id = ? and user_id = ?", opponent_id, user_id)
+				matched_match.first.update(status: 2)
+				Match.create({user_id: user_id, opponent_id: opponent_id, status: 2})
+			else
+				Match.create({user_id: user_id, opponent_id: opponent_id, status: status})
+			end
 		# create a relationship record with a status of 0
 		# check if the other guys relationship status = 1
 		#   if he does, set the original relationship status to 2
 		#     create new relationship status for current user with 2
 		else
 			Match.create({user_id: user_id, opponent_id: opponent_id, status: status})
-
 		end
 		#   if he doesnt
 		#     create a relationship with a status of 1
@@ -152,7 +159,13 @@ class ApplicationController < Sinatra::Base
 		person = User.find(params[:id])
 		bio = person["bio"]
 		edit_bio = params['edit_bio']
-		person.update({bio: edit_bio})
+		height = person["height"]
+		edit_height = params["edit_height"]
+		weight = person["weight"]
+		edit_weight = params["edit_weight"]
+		location = person["location"]
+		edit_location = params["edit_location"]
+		person.update({bio: edit_bio, height: edit_height, weight: edit_weight, location: edit_location})
 		redirect '/'
 	end
 

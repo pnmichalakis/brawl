@@ -29,14 +29,14 @@
           <form id="dislike" action="/matches" method="post">
           <input type="hidden" name="opponent_id"value="<%=@opponent["id"]%>">
           <input type="hidden" name="status"value="0">
-          <input type="submit" value="I'm good">
+          <input type="submit" value="No Thank You">
           </form>
         </td>
         <td>
           <form id="like" action="/matches" method="post">
           <input type="hidden" name="opponent_id"value="<%=@opponent["id"]%>">
           <input type="hidden" name="status"value="1">
-          <input type="submit" value="Let's Scrap">
+          <input type="submit" value="Let's Fight">
           </form>
         </td>
       </tr>

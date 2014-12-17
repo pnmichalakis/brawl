@@ -1,14 +1,23 @@
 <div class="profile">
 <h3><%=@person.name%></h1>
 <img src="<%=@person.picture%>" alt="">
+<br>
+<form class="vitals" action="/profiles/<%=@person.id%>/vitals">
+<input type="hidden" name="_method" value="patch">
+	Height: <input class="h_and_w" type="text" name="edit_height" value="<%=@person.height%>">
+	Weight: <input class="h_and_w" type="text" name="edit_weight" value="<%=@person.weight%>">
+	Location: <input class="location" type="text" name="edit_location" value="<%=@person.location%>">
+	<br>
+	<input type="submit" value="Submit Vitals">
+</form>
 
-<h3>About me:</h3>
 <% if @user == @person %>
 	<form action="/profiles/<%=@person.id%>/bio" method="post">
 	<input type="hidden" name="_method" value="patch">
-	<textarea class="editbio" name="edit_bio" cols="30" rows="30"><%=@person.bio%></textarea>
+	<h6>About Me:</h6>
+	<textarea id="editbio" name="edit_bio" cols="30" rows="30"><%=@person.bio%></textarea>
 	<br>
-	<input type="submit">
+	<input type="submit" value="Submit Bio">
 <% else %>
 	<div class="bio"><%=@person.bio%></div>
 <% end %>

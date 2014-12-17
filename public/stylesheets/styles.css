@@ -41,10 +41,17 @@ body {
 h3 {
 	color: white;
 }
-
-.editbio {
+h6 {
+	font-size: 10;
 	color: white;
-	background-color: black;
+}
+
+#editbio {
+	margin: 0 auto;
+	text-align: center;
+	display: block;
+	color: black;
+	background-color: white;
 }
 
 .profile {
@@ -56,4 +63,28 @@ h3 {
 .oppbio{
 	color: white;
 	padding: 10px;
+}
+
+.editlocation {
+	width: 100px;
+}
+.vitals {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.h_and_w {
+	width: 30px;
+	color: black;
+	margin-bottom: 20px;
+	height: 20px;
+	margin-left: 8px;
+}
+
+.location {
+	background-color: black;
+	margin-left: 8px;
+	width: 100px;
+	color: black;
+	height: 10px;
+	text-align: center;
 }
