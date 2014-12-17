@@ -12,10 +12,13 @@
   </form>
   </div>
 <%if @opponent != nil %>
-  <div class="opponent">
+  <div id="opponent">
     <h3><%=@opponent["name"]%></h3>
     <br>
     <img src="<%=@opponent["picture"]%>">
+    <br>
+    <br>
+    <button class="toggle">INFO</button>
     <br>
     <div class="oppinfo ">
       <p class="stats">

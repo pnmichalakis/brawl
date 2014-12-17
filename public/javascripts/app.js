@@ -1,7 +1,7 @@
 console.log("filibuster")
 
 $(document).ready(function(){
-$(document).keydown(function(e) {
+  $(document).keydown(function(e) {
     switch(e.which) {
         case 37: // left
         console.log("left");
@@ -20,7 +20,11 @@ $(document).keydown(function(e) {
         default: return; // exit this handler for other keys
     }
     e.preventDefault(); // prevent the default action (scroll / move caret)
-});
+  });
+$(".oppinfo").hide();
+$(".toggle").click(function(){
+  $(".oppinfo").slideToggle();
+  });
 });
 
 // $(document).ready(function() { 
