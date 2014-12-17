@@ -2,7 +2,8 @@
 <h3><%=@person.name%></h1>
 <img src="<%=@person.picture%>" alt="">
 <br>
-<form class="vitals" action="/profiles/<%=@person.id%>/vitals">
+<% if @user == @person %>
+<form class="vitals" action="/profiles/<%=@person.id%>/vitals" method="post">
 <input type="hidden" name="_method" value="patch">
 	Height: <input class="h_and_w" type="text" name="edit_height" value="<%=@person.height%>">
 	Weight: <input class="h_and_w" type="text" name="edit_weight" value="<%=@person.weight%>">
@@ -11,7 +12,6 @@
 	<input type="submit" value="Submit Vitals">
 </form>
 
-<% if @user == @person %>
 	<form action="/profiles/<%=@person.id%>/bio" method="post">
 	<input type="hidden" name="_method" value="patch">
 	<h6>About Me:</h6>
@@ -19,6 +19,9 @@
 	<br>
 	<input type="submit" value="Submit Bio">
 <% else %>
+  <p>Height: <%=@person.height%></p>
+	<p>Weight: <%=@person.weight%></p>
+	<p>Location: <%=@person.location%></p>
 	<div class="bio"><%=@person.bio%></div>
 <% end %>
 <br>
