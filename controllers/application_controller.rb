@@ -25,26 +25,27 @@ class ApplicationController < Sinatra::Base
 			@removed = []
 			@potential = []
 			@non_user_users = @users - [@session]
-			@previouslikes = @session.likes.map do |like|
-				like.opponent_id
-			end
-			@previousdislikes = @session.dislikes.map do |dislike|
-				dislike.opponent_id
-			end
-			@previous = @previousdislikes + @previouslikes
-			@non_user_users.each do |x|
-        exclude = false
-        @previous.each do |y|
-          if x.id == y
-            exclude = true
-            @removed << x
-          end
-        end
-        if !exclude
-          @potential << x
-        end
-      end
-			@opponent = @potential.sample
+			# @previouslikes = @session.likes.map do |like|
+			# 	like.opponent_id
+			# end
+			# @previousdislikes = @session.dislikes.map do |dislike|
+			# 	dislike.opponent_id
+			# end
+			# @previous = @previousdislikes + @previouslikes
+			# @non_user_users.each do |x|
+   #      exclude = false
+   #      @previous.each do |y|
+   #        if x.id == y
+   #          exclude = true
+   #          @removed << x
+   #        end
+   #      end
+   #      if !exclude
+   #        @potential << x
+   #      end
+   #    end
+			# @opponent = @potential.sample
+			@opponent = @non_user_users.sample
 			# app code
 			# swiping and stuff
 			#index on username database?
@@ -91,19 +92,49 @@ class ApplicationController < Sinatra::Base
 		erb :login
 	end
 
-	post '/likes' do
+	post '/matches' do
 		user_id = session["user"]["id"]
-		opponent_id = params['opponent_id']
-		Like.create({user_id: user_id, opponent_id: opponent_id})
+		opponent_id = params["opponent_id"]
+		status = params[:status]
+		binding.pry
+		if params[:status] == 1
+			Match.where("opponent_id IS NOT NULL")
+			Match.create({user_id: user_id, opponent_id: opponent_id, status: status})
+		# create a relationship record with a status of 0
+		# check if the other guys relationship status = 1
+		#   if he does, set the original relationship status to 2
+		#     create new relationship status for current user with 2
+		else
+			Match.create({user_id: user_id, opponent_id: opponent_id, status: status})
+
+		end
+		#   if he doesnt
+		#     create a relationship with a status of 1
 		redirect '/'
 	end
 
-	post '/dislikes' do
-		user_id = session["user"]["id"]
-		opponent_id = params['opponent_id']
-		Dislike.create({user_id: user_id, opponent_id: opponent_id})
-		redirect '/'
-	end
+	# post '/likes' do
+	# 	user_id = session["user"]["id"]
+	# 	opponent_id = params['opponent_id']
+	# 	Like.create({user_id: user_id, opponent_id: opponent_id})
+	# 	opponent = User.find(opponent_id)
+	# 	opplikes = opponent.likes.map do |like|
+	# 							like.opponent_id
+	# 						end
+	# 						binding.pry
+	# 	if opplikes.include? session[:user].id = true
+	# 		Match.create({user_id: user_id, opponent_id: opponent.id})
+	# 		Match.create({user_id: opponent.id, opponent_id: user_id})
+	# 	end
+	# 	redirect '/'
+	# end
+
+	# post '/dislikes' do
+	# 	user_id = session["user"]["id"]
+	# 	opponent_id = params['opponent_id']
+	# 	Dislike.create({user_id: user_id, opponent_id: opponent_id})
+	# 	redirect '/'
+	# end
 
 	get '/logout' do
 		session[:user] = nil
@@ -123,6 +154,14 @@ class ApplicationController < Sinatra::Base
 		edit_bio = params['edit_bio']
 		person.update({bio: edit_bio})
 		redirect '/'
+	end
+
+	get '/:id/matches' do
+		@session = session[:user]
+		@users = User.all
+		@matches = Match.all
+		binding.pry
+		erb :matches
 	end
 
 end

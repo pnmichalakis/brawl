@@ -3,8 +3,8 @@
   <form action="/profiles/<%=session[:user]["id"]%>">
     <input type="submit" value="Profile">
   </form>
-  <form action="/profiles/<%=session[:user]["id"]%>/messages">
-    <input type="submit" value="Message">
+  <form action="/<%=session[:user]["id"]%>/matches">
+    <input type="submit" value="Matches">
   </form>
   <form action="/logout" method='get'>
     <input type="hidden" name='_method' value='delete'>
@@ -26,15 +26,17 @@
     <table class="table">
       <tr>
         <td>
-          <form id="like" action="/likes" method="post">
+          <form id="dislike" action="/matches" method="post">
           <input type="hidden" name="opponent_id"value="<%=@opponent["id"]%>">
-          <input type="submit" value="Let's Scrap">
+          <input type="hidden" name="status"value="0">
+          <input type="submit" value="I'm good">
           </form>
         </td>
         <td>
-          <form id="dislike" action="/dislikes" method="post">
+          <form id="like" action="/matches" method="post">
           <input type="hidden" name="opponent_id"value="<%=@opponent["id"]%>">
-          <input type="submit" value="I'm good">
+          <input type="hidden" name="status"value="1">
+          <input type="submit" value="Let's Scrap">
           </form>
         </td>
       </tr>
