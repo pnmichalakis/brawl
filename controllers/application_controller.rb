@@ -100,9 +100,10 @@ class ApplicationController < Sinatra::Base
 		opponent_id = params["opponent_id"]
 		status = params[:status]
 		if params[:status] == "1"
-			binding.pry
 			if Match.where("opponent_id = ? and user_id = ? and status = ?", user_id, opponent_id, 1)
-				Match.where("opponent_id = ? and user_id = ? and status = ?", user_id, opponent_id, 1).update(status: 2)
+				matched = Match.where("opponent_id = ? and user_id = ? and status = ?", user_id, opponent_id, 1)
+				Match.update(matched.first.id, status: 2)
+				# Match.where("opponent_id = ? and user_id = ? and status = ?", user_id, opponent_id, 1).update(status: 2)
 				Match.create({user_id: user_id, opponent_id: opponent_id, status: 2})
 			else
 				Match.create({user_id: user_id, opponent_id: opponent_id, status: status})
@@ -110,12 +111,6 @@ class ApplicationController < Sinatra::Base
 		else
 			Match.create({user_id: user_id, opponent_id: opponent_id, status: status})
 		end
-		# create a relationship record with a status of 0
-		# check if the other guys relationship status = 1
-		#   if he does, set the original relationship status to 2
-		#     create new relationship status for current user with 2
-		#   if he doesnt
-		#     create a relationship with a status of 1
 		redirect '/'
 	end
 
