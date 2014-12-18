@@ -18,16 +18,16 @@
     <img src="<%=@opponent["picture"]%>">
     <br>
     <br>
-    <button class="toggle">INFO</button>
-    <br>
-    <div class="oppinfo ">
-      <p class="stats">
+    <p class="stats">
        Height: <%=@opponent["height"]%>
        <br>
        Weight:  <%=@opponent["weight"]%>
        <br>
        Location: <%=@opponent["location"]%>
       </p>
+    <button class="toggle">MORE INFO</button>
+    <br>
+    <div class="oppinfo">
       <p class="oppbio"><%=@opponent["bio"]%></p>
     </div>
   </div>

@@ -121,7 +121,12 @@ class ApplicationController < Sinatra::Base
 	get '/:id/matches' do
 		@session = session[:user]
 		@users = User.all
-		@matches = Match.all
+		# @matches = Match.all
+		@matched = @session.matches.where({status: 2})
+		@matched_user_ids = @matched.map do |match|
+											match.opponent_id
+										end
+		@matched_users = User.find(@matched_user_ids)
 		binding.pry
 		erb :matches
 	end
