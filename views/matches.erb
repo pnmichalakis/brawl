@@ -1,12 +1,15 @@
 <h3 class="title">Ripe for Conquest</h3>
-
-<%@matched_users.map do |user|%>
-<ul>
-	<a href="/matches/<%=@matched.where({opponent_id: user.id}).first.id%>">
-		<li class="matcheduser">
-			<img class="matchphoto" src="<%=user.picture%>">
-			<%=user.name%>
-		</li>
-	</a>
-</ul>
+<%if @matched_users != []%>
+	<%@matched_users.map do |user|%>
+	<ul>
+		<a href="/matches/<%=@matched.where({opponent_id: user.id}).first.id%>">
+			<li class="matcheduser">
+				<img class="matchphoto" src="<%=user.picture%>">
+				<%=user.name%>
+			</li>
+		</a>
+	</ul>	
+	<%end%>
+<%else%>
+	<h3>No prospective Combatants!</h3>
 <%end%>
