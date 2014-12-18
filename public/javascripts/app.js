@@ -1,5 +1,3 @@
-console.log("filibuster")
-
 $(document).ready(function(){
   $(document).keydown(function(e) {
     switch(e.which) {
@@ -29,12 +27,4 @@ $(".toggle").click(function(){
   });
 });
 
-// $(document).ready(function() { 
-//  // bind 'myForm' and provide a simple callback function 
-//    $('#like').ajaxForm(function() { 
-//      alert("Liked!"); 
-//     });
-//    $('#dislike').ajaxForm(function() { 
-//      alert("disliked!"); 
-//     });  
-//   });
+

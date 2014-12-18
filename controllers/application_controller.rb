@@ -25,30 +25,7 @@ class ApplicationController < Sinatra::Base
 			@removed = []
 			@potential = []
 			@non_user_users = @users - [@session]
-			# @previouslikes = @session.likes.map do |like|
-			# 	like.opponent_id
-			# end
-			# @previousdislikes = @session.dislikes.map do |dislike|
-			# 	dislike.opponent_id
-			# end
-			# @previous = @previousdislikes + @previouslikes
-			# @non_user_users.each do |x|
-   #      exclude = false
-   #      @previous.each do |y|
-   #        if x.id == y
-   #          exclude = true
-   #          @removed << x
-   #        end
-   #      end
-   #      if !exclude
-   #        @potential << x
-   #      end
-   #    end
-			# @opponent = @potential.sample
 			@opponent = @non_user_users.sample
-			# app code
-			# swiping and stuff
-			#index on username database?
 			erb :index
 		else
 			redirect '/login'
@@ -59,9 +36,6 @@ class ApplicationController < Sinatra::Base
 		# prep the 'login with facebook link'
 		@oauth    = Koala::Facebook::OAuth.new(ENV['APPID'], ENV['APPSECRET'], "http://localhost:9292/login")
 		@auth_url = @oauth.url_for_oauth_code(:permissions => ["email", "user_photos", "user_birthday"])
-		#:permissions => "user_photos",
-		#:permissions => "user_birthday")
-
 		# authenticate user against facebook
 		if params['code']
 			@code = params['code']
@@ -71,8 +45,6 @@ class ApplicationController < Sinatra::Base
 			@photo = @graph.get_picture("me", :type => "large")
 			# Check if  user exists in the database
 			@user = User.find_by({fbid: @person["id"]})
-
-
 
 			if @user == nil
 				@user = User.new
@@ -113,29 +85,6 @@ class ApplicationController < Sinatra::Base
 		end
 		redirect '/'
 	end
-
-	# post '/likes' do
-	# 	user_id = session["user"]["id"]
-	# 	opponent_id = params['opponent_id']
-	# 	Like.create({user_id: user_id, opponent_id: opponent_id})
-	# 	opponent = User.find(opponent_id)
-	# 	opplikes = opponent.likes.map do |like|
-	# 							like.opponent_id
-	# 						end
-	# 						binding.pry
-	# 	if opplikes.include? session[:user].id = true
-	# 		Match.create({user_id: user_id, opponent_id: opponent.id})
-	# 		Match.create({user_id: opponent.id, opponent_id: user_id})
-	# 	end
-	# 	redirect '/'
-	# end
-
-	# post '/dislikes' do
-	# 	user_id = session["user"]["id"]
-	# 	opponent_id = params['opponent_id']
-	# 	Dislike.create({user_id: user_id, opponent_id: opponent_id})
-	# 	redirect '/'
-	# end
 
 	get '/logout' do
 		session[:user] = nil
