@@ -130,6 +130,23 @@ class ApplicationController < Sinatra::Base
 		erb :matches
 	end
 
+	get '/matches/:id' do
+		@session = session[:user]
+		@match = Match.find(params[:id])
+		@messages = Message.all
+		erb :messages
+	end
+
+	post '/matches/:id/messages' do
+		sender_id = session[:user]['id']
+		binding.pry
+		@match = Match.find(params[:id])
+		recipient_id = params['recipient_id']
+		body = params['body']
+		Message.create({sender_id: sender_id, recipient_id: recipient_id, body: body})
+		redirect '/'
+	end
+
 end
 
 

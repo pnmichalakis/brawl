@@ -119,3 +119,8 @@ h6 {
 	width: 100px;
 	border-radius: 25px;
 }
+
+.messagepage {
+	text-align: center;
+	margin: 0 auto;
+}
