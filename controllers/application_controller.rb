@@ -127,7 +127,6 @@ class ApplicationController < Sinatra::Base
 											match.opponent_id
 										end
 		@matched_users = User.find(@matched_user_ids)
-		binding.pry
 		erb :matches
 	end
 
