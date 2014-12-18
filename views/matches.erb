@@ -1,9 +1,12 @@
-<h3>Matches</h3>
+<h3 class="title">Ripe for Conquest</h3>
 
 <%@matched_users.map do |user|%>
 <ul>
-	<li>
-		<%=user.name%>
-	</li>
+	<a href="/matches/<%=@matched.where({opponent_id: user.id}).first.id%>/">
+		<li class="matcheduser">
+			<img class="matchphoto" src="<%=user.picture%>">
+			<%=user.name%>
+		</li>
+	</a>
 </ul>
 <%end%>

@@ -131,6 +131,12 @@ class ApplicationController < Sinatra::Base
 		erb :matches
 	end
 
+	get '/matches/:match_id' do
+		@opponent = User.find(opponent_id)
+		erb :messages
+	end
+
+
 end
 
 

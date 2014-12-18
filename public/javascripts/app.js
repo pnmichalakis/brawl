@@ -17,9 +17,9 @@ $(document).ready(function(){
 
         // case 40: // down
         // break;
-        default: return; // exit this handler for other keys
+        default: return;
     }
-    e.preventDefault(); // prevent the default action (scroll / move caret)
+    e.preventDefault();
   });
 $(".oppinfo").hide();
 $(".toggle").click(function(){
