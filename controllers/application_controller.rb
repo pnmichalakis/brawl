@@ -101,6 +101,7 @@ class ApplicationController < Sinatra::Base
 		status = params[:status]
 		if params[:status] == "1"
 			if Match.where("opponent_id = ? and user_id = ? and status = ?", user_id, opponent_id, 1)
+				binding.pry
 				matched = Match.where("opponent_id = ? and user_id = ? and status = ?", user_id, opponent_id, 1)
 				Match.update(matched.first.id, status: 2)
 				# Match.where("opponent_id = ? and user_id = ? and status = ?", user_id, opponent_id, 1).update(status: 2)

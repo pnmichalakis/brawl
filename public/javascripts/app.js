@@ -5,6 +5,7 @@ $(document).ready(function(){
     switch(e.which) {
         case 37: // left
         console.log("left");
+        $('#dislike').submit();
         break;
 
         // case 38: // up
@@ -13,6 +14,7 @@ $(document).ready(function(){
 
         case 39: // right
         console.log("right");
+        $('#like').submit();
         break;
 
         // case 40: // down
