@@ -23,11 +23,14 @@ class ApplicationController < Sinatra::Base
 
 		if session[:user]
 			@session = session[:user]
-			@users = User.all
-			@removed = []
-			@potential = []
-			@non_user_users = @users - [@session]
-			@opponent = @non_user_users.sample
+			@users = User.all - [@session]
+			@user_matches = User.find(@session['id']).matches.map do |match|
+													match.opponent_id
+												end
+			@seen_users = User.find(@user_matches)
+			@unseen_users = @users - @seen_users
+			binding.pry
+			@opponent = @unseen_users.sample
 			erb :index
 		else
 			redirect '/login'
