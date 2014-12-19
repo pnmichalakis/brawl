@@ -29,7 +29,6 @@ class ApplicationController < Sinatra::Base
 												end
 			@seen_users = User.find(@user_matches)
 			@unseen_users = @users - @seen_users
-			binding.pry
 			@opponent = @unseen_users.sample
 			erb :index
 		else
