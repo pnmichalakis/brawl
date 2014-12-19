@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
 			@seen_users = User.find(@user_matches)
 			@unseen_users = @users - @seen_users
 			@opponent = @unseen_users.sample
-			@age = Time.now.year - @opponent["dob"][6..-1].to_i
+			# @age = Time.now.year - @opponent["dob"][6..-1].to_i
 			erb :index
 		else
 			redirect '/login'
