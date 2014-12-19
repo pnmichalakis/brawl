@@ -137,6 +137,7 @@ class ApplicationController < Sinatra::Base
 		@user_msg = @messages.where({sender_id: session[:user]['id'], recipient_id: @match['opponent_id']})
 		@opp_msg = @messages.where({sender_id: @match['opponent_id'] , recipient_id: session[:user]['id']})
 		@all_msg = @user_msg + @opp_msg
+		@all_msg_sorted = @all_msg.sort_by{ |message| message.created_at }
 		erb :messages
 	end
 

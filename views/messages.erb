@@ -1,12 +1,8 @@
 <h3 class="title">Trash Talk</h3>
-<div class="nav">
-<form action="/">
-	<input type="submit" value="Home">
-</form>
-</div>
+<div class="messagescontent">
 <h3><%=User.find(@match['opponent_id']).name%></h3>
 <div class="messagepage">
-<%@all_msg.map do |message|%>
+<%@all_msg_sorted.map do |message|%>
 <ul>
 	<li>
 		<%=User.find(message.sender_id).name%> says:
@@ -21,4 +17,9 @@
 	<input type="submit" value="Send">
 </form>
 </div>
-
+</div>
+<div class="home">
+	<form action="/">
+		<input type="submit" value="Home">
+	</form>
+</div>
