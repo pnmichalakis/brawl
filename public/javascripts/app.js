@@ -25,6 +25,11 @@ $(".oppinfo").hide();
 $(".toggle").click(function(){
   $(".oppinfo").slideToggle();
   });
+$(".editprofileform").hide();
+$("#editprofileshow").click(function(){
+    $(".editprofileform").toggle();
+    $(".standardprofileview").toggle();
+  });
 });
 
 

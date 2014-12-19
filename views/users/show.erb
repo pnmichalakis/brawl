@@ -3,7 +3,8 @@
 <img src="<%=@person.picture%>" alt="">
 <br>
 <% if @user == @person %>
-<h6>Edit Profile</h6>
+<button id="editprofileshow">Edit Profile Information</button>
+<div class="editprofileform">
 <form class="vitals" action="/profiles/<%=@person.id%>/vitals" method="post">
 <input type="hidden" name="_method" value="patch">
 	Height: <input class="h_and_w" type="text" name="edit_height" value="<%=@person.height%>">
@@ -15,6 +16,14 @@
 	<br>
 	<input type="submit" value="Submit">
 </form>
+</div>
+<div class="standardprofileview">
+	<p>Height: <%=@person.height%></p>
+	<p>Weight: <%=@person.weight%></p>
+	<p>Location: <%=@person.location%></p>
+	<h6>About Me:</h6>
+	<div class="bio"><%=@person.bio%></div>
+</div>
 <% else %>
   <p>Height: <%=@person.height%></p>
 	<p>Weight: <%=@person.weight%></p>
