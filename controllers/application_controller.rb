@@ -134,6 +134,9 @@ class ApplicationController < Sinatra::Base
 		@session = session[:user]
 		@match = Match.find(params[:id])
 		@messages = Message.all
+		@user_msg = @messages.where({sender_id: session[:user]['id'], recipient_id: @match['opponent_id']})
+		@opp_msg = @messages.where({sender_id: @match['opponent_id'] , recipient_id: session[:user]['id']})
+		@all_msg = @user_msg + @opp_msg
 		erb :messages
 	end
 

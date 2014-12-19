@@ -1,7 +1,12 @@
 <h3 class="title">Trash Talk</h3>
-<h3><%=session[:user]["name"]%></h3>
+<div class="nav">
+<form action="/">
+	<input type="submit" value="Home">
+</form>
+</div>
+<h3><%=User.find(@match['opponent_id']).name%></h3>
 <div class="messagepage">
-<%@messages.where(sender_id: session[:user]['id']).map do |message|%>
+<%@all_msg.map do |message|%>
 <ul>
 	<li>
 		<%=User.find(message.sender_id).name%> says:
@@ -15,7 +20,5 @@
 	<p></p>
 	<input type="submit" value="Send">
 </form>
-<form action="/">
-	<input type="submit" value="Home">
-</form>
 </div>
+
