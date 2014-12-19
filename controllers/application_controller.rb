@@ -1,7 +1,8 @@
 class ApplicationController < Sinatra::Base
-	helpers Sinatra::AuthenticationHelper
+	helpers Sinatra::FlashHelper
 	require 'koala'
 	require 'dotenv'
+	require 'rack-flash'
 	Dotenv.load
 	ActiveRecord::Base.establish_connection({
 		adapter: 'postgresql',
@@ -14,6 +15,7 @@ class ApplicationController < Sinatra::Base
 	enable :logging, :dump_errors, :raise_errors, :show_exceptions
 	enable :method_override
 	use Rack::Session::Pool
+	use Rack::Flash, :sweep => true
 
 	get '/' do
 		user_is_logged_in = false
@@ -77,6 +79,7 @@ class ApplicationController < Sinatra::Base
 				Match.update(matched.first.id, status: 2)
 				# Match.where("opponent_id = ? and user_id = ? and status = ?", user_id, opponent_id, 1).update(status: 2)
 				Match.create({user_id: user_id, opponent_id: opponent_id, status: 2})
+				flash[:notice] = "You have a new match!"
 			else
 				Match.create({user_id: user_id, opponent_id: opponent_id, status: status})
 			end
