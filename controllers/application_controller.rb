@@ -17,6 +17,8 @@ class ApplicationController < Sinatra::Base
 	use Rack::Session::Pool
 	use Rack::Flash, :sweep => true
 
+	after { ActiveRecord::Base.connection.close }
+
 	get '/' do
 		user_is_logged_in = false
 
