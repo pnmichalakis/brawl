@@ -139,12 +139,11 @@ class ApplicationController < Sinatra::Base
 
 	post '/matches/:id/messages' do
 		sender_id = session[:user]['id']
-		binding.pry
 		@match = Match.find(params[:id])
 		recipient_id = params['recipient_id']
 		body = params['body']
 		Message.create({sender_id: sender_id, recipient_id: recipient_id, body: body})
-		redirect '/'
+		redirect '/matches/' + @match.id.to_s
 	end
 
 end

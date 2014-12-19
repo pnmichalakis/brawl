@@ -123,4 +123,9 @@ h6 {
 .messagepage {
 	text-align: center;
 	margin: 0 auto;
+	color: white;
+}
+
+.messagebody {
+	background-color: black;
 }

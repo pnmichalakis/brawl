@@ -1,16 +1,16 @@
 <h3 class="title">Trash Talk</h3>
 <h3><%=session[:user]["name"]%></h3>
 <div class="messagepage">
-<%@messages.each do |message|%>
-	<ul>
-		<li>
-			<%=message.where({sender_id: session[:user]['id']})%>
-		</li>
-	</ul>
+<%@messages.where(sender_id: session[:user]['id']).map do |message|%>
+<ul>
+	<li>
+		<%=User.find(message.sender_id).name%> says:
+		<%=message.body%>
+	</li>
+</ul>
 <%end%>
-
 <form action="/matches/<%=@match['id']%>/messages" method ="post">
-	<input type="hidden" name"recipient_id" value="@match['opponent_id']">
+	<input type="hidden" name="recipient_id" value="<%=@match['opponent_id']%>">
 	<textarea class="messagebody" name="body" placeholder="CONTENT" cols="30" rows="10"></textarea>
 	<p></p>
 	<input type="submit" value="Send">
