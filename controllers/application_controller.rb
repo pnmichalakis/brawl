@@ -103,13 +103,13 @@ class ApplicationController < Sinatra::Base
 		erb :'/users/show'
 	end
 
-	patch '/profiles/:id/bio' do
-		person = User.find(params[:id])
-		bio = person["bio"]
-		edit_bio = params['edit_bio']
-		person.update({bio: edit_bio})
-		redirect '/'
-	end
+	# patch '/profiles/:id/bio' do
+	# 	person = User.find(params[:id])
+	# 	bio = person["bio"]
+	# 	edit_bio = params['edit_bio']
+	# 	person.update({bio: edit_bio})
+	# 	redirect '/'
+	# end
 
 	patch '/profiles/:id/vitals' do
 		person = User.find(params[:id])
@@ -119,7 +119,9 @@ class ApplicationController < Sinatra::Base
 		edit_weight = params["edit_weight"]
 		location = person["location"]
 		edit_location = params["edit_location"]
-		person.update({height: edit_height, weight: edit_weight, location: edit_location})
+		bio = person["bio"]
+		edit_bio = params['edit_bio']
+		person.update({height: edit_height, weight: edit_weight, location: edit_location, bio: edit_bio})
 		redirect'/'
 	end
 
