@@ -6,17 +6,11 @@ $(document).ready(function(){
         $('#dislike').submit();
         break;
 
-        // case 38: // up
-        // console.log("up");
-        // break;
-
         case 39: // right
         console.log("right");
-        $('#like').submit();
+        // $('#like').submit();
         break;
 
-        // case 40: // down
-        // break;
         default: return;
     }
     e.preventDefault();
