@@ -8,7 +8,7 @@ $(document).ready(function(){
 
         case 39: // right
         console.log("right");
-        // $('#like').submit();
+        $('#like').submit();
         break;
 
         default: return;
