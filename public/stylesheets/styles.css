@@ -135,3 +135,7 @@ h6 {
 	color: white;
 	margin: 0 auto;
 }
+
+li {
+	list-style-type: none;
+}

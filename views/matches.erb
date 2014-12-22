@@ -6,8 +6,9 @@
 	<ul>
 		<a href="/matches/<%=@matched.where({opponent_id: user.id}).first.id%>">
 			<li class="matcheduser">
-				<img class="matchphoto" src="<%=user.picture%>">
 				<%=user.name%>
+				<br>
+				<img class="matchphoto" src="<%=user.picture%>">
 			</li>
 		</a>
 	</ul>	
