@@ -60,6 +60,7 @@ class ApplicationController < Sinatra::Base
 				@user.email = @person["email"]
 				@user.fbid = @person["id"]
 				@user.dob = @person["birthday"]
+				@user.gender = @person["gender"]
 				@user.height = @user.name + " left this field blank!"
 				@user.weight = @user.name + " left this field blank!"
 				@user.location = @user.name + " left this field blank!"
