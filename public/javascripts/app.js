@@ -15,8 +15,11 @@ $(document).ready(function(){
     }
     e.preventDefault();
   });
-$("#like").submit(function(){
-  alert("liked")
+$("#like").submit(function(e){
+  // e.preventDefault();
+  // alert("liked");
+  // console.log("like")
+  // location.reload(true);
 });
 $("#dislike").submit(function(){
   alert("disliked")
@@ -30,6 +33,16 @@ $("#editprofileshow").click(function(){
     $(".editprofileform").toggle();
     $(".standardprofileview").toggle();
   });
+$(".likesubmit").hover(function(){
+  $("#opponent").append( $( "<span class='likehover'> Fight!</span>" ) );
+}, function(){
+  $("#opponent").find("span:last").remove();
+});
+$(".dislikesubmit").hover(function(){
+  $("#opponent").append( $( "<span class='dislikehover'> No Thanks</span>" ) );
+}, function(){
+  $("#opponent").find("span:last").remove();
+});
 });
 
 
