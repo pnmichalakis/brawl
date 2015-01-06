@@ -15,6 +15,12 @@ $(document).ready(function(){
     }
     e.preventDefault();
   });
+$("#like").submit(function(){
+  alert("liked")
+});
+$("#dislike").submit(function(){
+  alert("disliked")
+});
 $(".oppinfo").hide();
 $(".toggle").click(function(){
   $(".oppinfo").slideToggle();
