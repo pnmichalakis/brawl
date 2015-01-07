@@ -20,7 +20,9 @@ GEM
     bcrypt (3.1.9)
     builder (3.2.2)
     coderay (1.1.0)
+    daemons (1.1.9)
     dotenv (1.0.2)
+    eventmachine (1.0.3)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     hashie (3.3.1)
@@ -81,6 +83,10 @@ GEM
     sinatra-reloader (1.0)
       sinatra-contrib
     slop (3.6.0)
+    thin (1.5.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     thread_safe (0.3.4)
     tilt (1.4.1)
     tzinfo (1.2.2)
@@ -102,3 +108,4 @@ DEPENDENCIES
   sinatra
   sinatra-activerecord
   sinatra-reloader
+  thin
