@@ -6,9 +6,15 @@
 	<ul>
 		<a href="/matches/<%=@matched.where({opponent_id: user.id}).first.id%>">
 			<li class="matcheduser">
-				<%=user.name%>
-				<br>
-				<img class="matchphoto" src="<%=user.picture%>">
+				<% if @unread.where(sender_id: user.id).count > 0 %>
+					<span id="unreadmessageusername"><%=user.name%></span>
+					<br>
+					<img class="matchphoto" src="<%=user.picture%>">
+				<%else%>
+					<%=user.name%>
+					<br>
+					<img class="matchphoto" src="<%=user.picture%>">
+				<%end%>
 			</li>
 		</a>
 	</ul>	

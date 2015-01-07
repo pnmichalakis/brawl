@@ -147,9 +147,15 @@ a {
 .likehover {
 	float: right;
 	color: green;
+	font-family: Sinking Ship;
 }
 
 .dislikehover {
 	float: left;
+	color: red;
+	font-family: Sinking Ship;
+}
+
+#unreadmessageusername {
 	color: red;
 }

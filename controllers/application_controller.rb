@@ -34,7 +34,6 @@ class ApplicationController < Sinatra::Base
 			@opponent = @unseen_users.sample
 			@unread = Message.where({recipient_id: @session["id"], unread: true})
 			# @age = Time.now.year - @opponent["dob"][6..-1].to_i
-			binding.pry
 			erb :index
 		else
 			redirect '/login'
