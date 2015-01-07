@@ -32,7 +32,9 @@ class ApplicationController < Sinatra::Base
 			@seen_users = User.find(@user_matches)
 			@unseen_users = @users - @seen_users
 			@opponent = @unseen_users.sample
+			@unread = Message.where({recipient_id: @session["id"], unread: true})
 			# @age = Time.now.year - @opponent["dob"][6..-1].to_i
+			binding.pry
 			erb :index
 		else
 			redirect '/login'
@@ -138,6 +140,7 @@ class ApplicationController < Sinatra::Base
 											match.opponent_id
 										end
 		@matched_users = User.find(@matched_user_ids)
+		@unread = Message.where({recipient_id: @session["id"], unread: true})
 		erb :matches
 	end
 
@@ -157,7 +160,7 @@ class ApplicationController < Sinatra::Base
 		@match = Match.find(params[:id])
 		recipient_id = params['recipient_id']
 		body = params['body']
-		Message.create({sender_id: sender_id, recipient_id: recipient_id, body: body})
+		Message.create({sender_id: sender_id, recipient_id: recipient_id, body: body, unread: true})
 		redirect '/matches/' + @match.id.to_s
 	end
 
