@@ -105,16 +105,11 @@ class ApplicationController < Sinatra::Base
 		@user = session[:user]
 		@users = User.all
 		@person = User.find(params[:id])
+		if @user != @person
+			redirect '/'
+		end
 		erb :'/users/show'
 	end
-
-	# patch '/profiles/:id/bio' do
-	# 	person = User.find(params[:id])
-	# 	bio = person["bio"]
-	# 	edit_bio = params['edit_bio']
-	# 	person.update({bio: edit_bio})
-	# 	redirect '/'
-	# end
 
 	patch '/profiles/:id/vitals' do
 		person = User.find(params[:id])
