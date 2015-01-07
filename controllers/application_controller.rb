@@ -151,6 +151,10 @@ class ApplicationController < Sinatra::Base
 		@opp_msg = @messages.where({sender_id: @match['opponent_id'] , recipient_id: session[:user]['id']})
 		@all_msg = @user_msg + @opp_msg
 		@all_msg_sorted = @all_msg.sort_by{ |message| message.created_at }
+		@unread = @opp_msg.where(unread: true)
+		@unread.map do |message|
+			message.update(unread: false)
+		end
 		erb :messages
 	end
 
