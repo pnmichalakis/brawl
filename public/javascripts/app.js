@@ -22,7 +22,7 @@ $("#like").submit(function(e){
   // location.reload(true);
 });
 $("#dislike").submit(function(){
-  alert("disliked")
+  // alert("disliked")
 });
 $(".oppinfo").hide();
 $(".toggle").click(function(){
