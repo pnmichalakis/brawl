@@ -1,3 +1,26 @@
+<div class="nav">
+  <form action="/">
+    <input type="submit" value="Home">
+  </form>
+  <form action="/profiles/<%=session[:user]["id"]%>">
+    <input type="submit" value="Profile">
+  </form>
+  <% flash_types.select{ |kind| flash.has?(kind) }.each do |kind| %>
+    <div class="flash <%= kind %>">
+      <h6><%= flash[kind] %></h6>
+    </div>
+  <% end %>
+  <%if @unread.count > 0%>
+  <h6>You have new messages</h6>
+  <%end%>
+  <form action="/<%=session[:user]["id"]%>/matches">
+    <input type="submit" value="Matches">
+  </form>
+  <form action="/logout" method='get'>
+    <input type="hidden" name='_method' value='delete'>
+    <input type="submit" value='Log-Out'>
+  </form>
+</div>
 <div class="profile">
 <h3><%=@person.name%></h1>
 <img src="<%=@person.picture%>" alt="">
@@ -31,7 +54,4 @@
 	<div class="bio"><%=@person.bio%></div>
 <% end %>
 <br>
-<form action="/">
-	<input type="submit" value="Home">
-</form>
 </div>

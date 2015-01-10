@@ -1,5 +1,8 @@
 <h1 class="title">FISTICUFFS</h1>
-  <div class="nav">
+<div class="nav">
+  <form action="/">
+    <input type="submit" value="Home">
+  </form>
   <form action="/profiles/<%=session[:user]["id"]%>">
     <input type="submit" value="Profile">
   </form>
@@ -18,7 +21,7 @@
     <input type="hidden" name='_method' value='delete'>
     <input type="submit" value='Log-Out'>
   </form>
-  </div>
+</div>
 <%if @opponent != nil %>
   <div id="opponent">
   <h3><%=@opponent["name"]%></h3>

@@ -105,6 +105,7 @@ class ApplicationController < Sinatra::Base
 		@user = session[:user]
 		@users = User.all
 		@person = User.find(params[:id])
+		@unread = Message.where({recipient_id: @user["id"], unread: true})
 		if @user != @person
 			redirect '/'
 		end
