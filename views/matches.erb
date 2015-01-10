@@ -1,10 +1,10 @@
 <h3 class="title">Ripe for Conquest</h3>
 <br>
-<div class="nav">
-  <form action="/">
-		<input type="submit" value="Home">
-	</form>
-  <form action="/profiles/<%=session[:user]["id"]%>">
+<nav class="outer">
+  <form class="inner" action="/">
+    <input type="submit" value="Home">
+  </form>
+  <form class="inner" action="/profiles/<%=session[:user]["id"]%>">
     <input type="submit" value="Profile">
   </form>
   <% flash_types.select{ |kind| flash.has?(kind) }.each do |kind| %>
@@ -15,14 +15,14 @@
   <%if @unread.count > 0%>
   <h6>You have new messages</h6>
   <%end%>
-  <form action="/<%=session[:user]["id"]%>/matches">
+  <form class="inner" action="/<%=session[:user]["id"]%>/matches">
     <input type="submit" value="Matches">
   </form>
-  <form action="/logout" method='get'>
+  <form class="inner" action="/logout" method='get'>
     <input type="hidden" name='_method' value='delete'>
     <input type="submit" value='Log-Out'>
-  </form>
-</div>
+  </form>  
+</nav>
 <br>
 <%if @matched_users != []%>
 	<%@matched_users.map do |user|%>

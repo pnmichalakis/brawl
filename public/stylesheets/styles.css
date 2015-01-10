@@ -3,6 +3,15 @@ body {
 	color: white;
 }
 
+.outer {
+	width:100%;
+  text-align: center;
+}
+
+.inner {
+  display: inline-block;
+}
+
 form {
 	border: none;
 }
