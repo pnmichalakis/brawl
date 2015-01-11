@@ -42,7 +42,7 @@ class ApplicationController < Sinatra::Base
 
 	get '/login' do
 		# prep the 'login with facebook link'
-		@oauth    = Koala::Facebook::OAuth.new(ENV['APPID'], ENV['APPSECRET'], "http://localhost:9292/login")
+		@oauth    = Koala::Facebook::OAuth.new(ENV['APPID'], ENV['APPSECRET'], ENV['CALLBACKURL'])
 		@auth_url = @oauth.url_for_oauth_code(:permissions => ["email", "user_photos", "user_birthday"])
 		# authenticate user against facebook
 		if params['code']
