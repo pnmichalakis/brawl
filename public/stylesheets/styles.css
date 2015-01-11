@@ -198,4 +198,6 @@ a {
 	padding-top: 2px;
 }
 
-
+input[type=submit] {
+	width: 150px;
+}
