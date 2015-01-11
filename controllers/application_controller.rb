@@ -33,6 +33,7 @@ class ApplicationController < Sinatra::Base
 			@unseen_users = @users - @seen_users
 			@opponent = @unseen_users.sample
 			@unread = Message.where({recipient_id: @session["id"], unread: true})
+			@unseen = Match.where({user_id: @session["id"], status: 2, seen: false})
 			# @age = Time.now.year - @opponent["dob"][6..-1].to_i
 			erb :index
 		else
@@ -85,13 +86,13 @@ class ApplicationController < Sinatra::Base
 				matched = Match.where("opponent_id = ? and user_id = ? and status = ?", user_id, opponent_id, 1)
 				Match.update(matched.first.id, status: 2)
 				# Match.where("opponent_id = ? and user_id = ? and status = ?", user_id, opponent_id, 1).update(status: 2)
-				Match.create({user_id: user_id, opponent_id: opponent_id, status: 2})
+				Match.create({user_id: user_id, opponent_id: opponent_id, status: 2, seen: false})
 				flash[:notice] = "You have a new match!"
 			else
-				Match.create({user_id: user_id, opponent_id: opponent_id, status: status})
+				Match.create({user_id: user_id, opponent_id: opponent_id, status: status, seen: false})
 			end
 		else
-			Match.create({user_id: user_id, opponent_id: opponent_id, status: status})
+			Match.create({user_id: user_id, opponent_id: opponent_id, status: status, seen: false})
 		end
 		redirect '/'
 	end
