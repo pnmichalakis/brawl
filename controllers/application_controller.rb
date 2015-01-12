@@ -144,7 +144,9 @@ class ApplicationController < Sinatra::Base
 
 	get '/matches/:id' do
 		@session = session[:user]
+		@unseen = Match.where({user_id: @session["id"], status: 2, seen: false})
 		@match = Match.find(params[:id])
+		@match.update(seen: true)
 		@messages = Message.all
 		@user_msg = @messages.where({sender_id: session[:user]['id'], recipient_id: @match['opponent_id']})
 		@opp_msg = @messages.where({sender_id: @match['opponent_id'] , recipient_id: session[:user]['id']})
