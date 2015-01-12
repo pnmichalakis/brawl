@@ -168,6 +168,10 @@ class ApplicationController < Sinatra::Base
 		redirect '/matches/' + @match.id.to_s
 	end
 
+	get '/instructions' do
+		erb :instructions
+	end
+
 end
 
 
