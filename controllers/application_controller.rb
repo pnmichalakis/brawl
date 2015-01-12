@@ -169,6 +169,9 @@ class ApplicationController < Sinatra::Base
 	end
 
 	get '/instructions' do
+		@session = session[:user]
+		@unread = Message.where({recipient_id: @session["id"], unread: true})
+		@unseen = Match.where({user_id: @session["id"], status: 2, seen: false})
 		erb :instructions
 	end
 
