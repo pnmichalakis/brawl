@@ -14,11 +14,9 @@
     <input type="hidden" name='_method' value='delete'>
     <input type="submit" value='Log-Out'>
   </form>  
-  <% flash_types.select{ |kind| flash.has?(kind) }.each do |kind| %>
-    <div class="flash <%= kind %>">
-      <h6><%= flash[kind] %></h6>
-    </div>
-  <% end %>
+  <%if @unseen.count > 0%>
+  <h6>You have new matches</h6>
+  <%end%>
   <%if @unread.count > 0%>
   <h6>You have new messages</h6>
   <%end%>
