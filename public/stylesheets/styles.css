@@ -165,9 +165,15 @@ a {
 	font-family: Sinking Ship;
 }
 
-#unreadmessageusername {
+.unreadmessageusername {
 	color: red;
 }
+
+.unseen {
+	color: red;
+}
+
+
 
 #facebook{
     display: inline-block;
