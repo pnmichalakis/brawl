@@ -40,5 +40,9 @@
 	<p></p>
 	<input type="submit" value="Send">
 </form>
+<form action="/unmatch/<%=@match['id']%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="submit" Value="Unmatch">
+</form>
 </div>
 </div>

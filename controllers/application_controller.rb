@@ -139,6 +139,9 @@ class ApplicationController < Sinatra::Base
 		@matched_users = User.find(@matched_user_ids)
 		@unread = Message.where({recipient_id: @session["id"], unread: true})
 		@unseen = Match.where({user_id: @session["id"], status: 2, seen: false})
+		@matched_message_rcvd = Message.where({sender_id: @matched_user_ids, recipient_id: @session["id"]})
+		@matched_message_sent = Message.where({sender_id: @session["id"], recipient_id: @matched_user_ids})
+		@matched_messages = @matched_message_sent + @matched_message_rcvd
 		erb :matches
 	end
 
@@ -166,6 +169,17 @@ class ApplicationController < Sinatra::Base
 		body = params['body']
 		Message.create({sender_id: sender_id, recipient_id: recipient_id, body: body, unread: true})
 		redirect '/matches/' + @match.id.to_s
+	end
+
+	patch '/unmatch/:id' do
+		@session = session[:user]
+		match = Match.find(params[:id])
+		opponent_id = match.opponent_id
+		opponent_match = Match.where({user_id: opponent_id, opponent_id: @session["id"]}).first
+		opponent_match.update(status: 0)
+		match.update(status: 0)
+		binding.pry
+		redirect '/' + @session['id'].to_s + '/matches'
 	end
 
 	get '/instructions' do

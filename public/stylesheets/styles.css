@@ -206,6 +206,7 @@ a {
 
 input[type=submit] {
 	width: 150px;
+	color: white;
 }
 
 #logintext {
