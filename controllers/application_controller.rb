@@ -178,7 +178,6 @@ class ApplicationController < Sinatra::Base
 		opponent_match = Match.where({user_id: opponent_id, opponent_id: @session["id"]}).first
 		opponent_match.update(status: 0)
 		match.update(status: 0)
-		binding.pry
 		redirect '/' + @session['id'].to_s + '/matches'
 	end
 

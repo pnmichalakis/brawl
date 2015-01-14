@@ -43,7 +43,9 @@
 					<img class="matchphoto" src="<%=user.picture%>">
 				<%end%>
         <br>
-<!--         <%=@matched_messages.sort_by{ |message| message.created_at }.last.body%> -->
+        <%if Message.where({sender_id: 53, recipient_id: 54}).last != [] %>
+          "<%=Message.where({sender_id: user.id, recipient_id: @session["id"]}).last.body[0..20]%>"
+        <%end%>
 			</li>
 		</a>
 	</ul>	
