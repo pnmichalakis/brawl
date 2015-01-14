@@ -127,6 +127,7 @@ h6 {
 	height: 100px;
 	width: 100px;
 	border-radius: 25px;
+	float: right;
 }
 
 .messagepage {
@@ -217,4 +218,8 @@ input[type=submit] {
 	text-align: center;
 	color: white;
 	font-size: 18px;
+}
+
+.matchlisttext {
+	float: left;
 }
