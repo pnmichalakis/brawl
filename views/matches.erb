@@ -31,7 +31,7 @@
 			<li class="matcheduser">
 				<% if @unseen.where(opponent_id: user.id).count > 0%>
             <img class="matchphoto" src="<%=user.picture%>">
-            <div class="matchlisttext">
+            <br>
 					  <span class="unseen"><%=user.name%></span>
             <br>
             <%if Message.where({sender_id: user.id, recipient_id: @session["id"]}) != [] %>
@@ -42,7 +42,7 @@
 					<br>
         <%elsif @unread.where(sender_id: user.id).count > 0%>
             <img class="matchphoto" src="<%=user.picture%>">
-            <div class="matchlisttext">
+            <br>
             <span class="unseen"><%=user.name%></span>
             <br>
             <%if Message.where({sender_id: user.id, recipient_id: @session["id"]}) != [] %>
@@ -52,7 +52,7 @@
             <br>
         <%else%>
             <img class="matchphoto" src="<%=user.picture%>">
-            <div class="matchlisttext">
+            <br>
 					   <%=user.name%>
             <br>
             <%if Message.where({sender_id: user.id, recipient_id: @session["id"]}) != [] %>
