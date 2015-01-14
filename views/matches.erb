@@ -24,46 +24,34 @@
   <%end%>
 </nav>
 <br>
-<div class="container">
 <%if @matched_users != []%>
 	<%@matched_users.map do |user|%>
-  <div class="row">
 	<ul>
 		<a href="/matches/<%=@matched.where({opponent_id: user.id}).first.id%>">
 			<li class="matcheduser">
 				<% if @unseen.where(opponent_id: user.id).count > 0%>
-          <div class="six columns">
             <img class="matchphoto" src="<%=user.picture%>">
-          </div>
-          <div="six columns">
             <div class="matchlisttext">
 					  <span class="unseen"><%=user.name%></span>
             <br>
             <%if Message.where({sender_id: user.id, recipient_id: @session["id"]}) != [] %>
-              "<%=Message.where({sender_id: user.id, recipient_id: @session["id"]}).last.body[0..20]%>..."
+              <span class="unseen">"<%=Message.where({sender_id: user.id, recipient_id: @session["id"]}).last.body[0..20]%>..."</span>
             <%end%>
             </div>
           </div>
 					<br>
         <%elsif @unread.where(sender_id: user.id).count > 0%>
-          <div class="six columns">
             <img class="matchphoto" src="<%=user.picture%>">
-          </div>
-          <div="six columns">
             <div class="matchlisttext">
-            <span><%=user.name%></span>
+            <span class="unseen"><%=user.name%></span>
             <br>
             <%if Message.where({sender_id: user.id, recipient_id: @session["id"]}) != [] %>
-             "<%=Message.where({sender_id: user.id, recipient_id: @session["id"]}).last.body[0..20]%>..."
+             <span class="unseen"><%=Message.where({sender_id: user.id, recipient_id: @session["id"]}).last.body[0..20]%>..."</span>
             <%end%>
             </div>
-          </div>
-          <br>
+            <br>
         <%else%>
-         <div class="six columns">
             <img class="matchphoto" src="<%=user.picture%>">
-         </div>
-         <div class="six columns">
             <div class="matchlisttext">
 					   <%=user.name%>
             <br>
@@ -71,14 +59,11 @@
              "<%=Message.where({sender_id: user.id, recipient_id: @session["id"]}).last.body[0..20]%>..."
             <%end%>
             </div>
-         </div>
 				<%end%>
 			</li>
 		</a>
 	</ul>
-  </div>
 	<%end%>
 <%else%>
 	<h3>No prospective Combatants!</h3>
 <%end%>
-</div>
