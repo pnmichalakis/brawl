@@ -2,7 +2,6 @@ class ApplicationController < Sinatra::Base
 	helpers Sinatra::FlashHelper
 	require 'koala'
 	require 'dotenv'
-	require 'rack-flash'
 	Dotenv.load
 	ActiveRecord::Base.establish_connection({
 		adapter: 'postgresql',
@@ -15,7 +14,6 @@ class ApplicationController < Sinatra::Base
 	enable :logging, :dump_errors, :raise_errors, :show_exceptions
 	enable :method_override
 	use Rack::Session::Pool
-	use Rack::Flash, :sweep => true
 
 	after { ActiveRecord::Base.connection.close }
 
