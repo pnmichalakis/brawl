@@ -24,12 +24,12 @@
   <%end%>
 </nav>
 <div class="messagescontent">
-<h3><%=User.find(@match['opponent_id']).name%></h3>
+<h3><%=User.find(@match['opponent_id']).name.split(" ")[0]%></h3>
 <div class="messagepage">
 <%@all_msg_sorted.map do |message|%>
 <ul>
 	<li>
-		<%=User.find(message.sender_id).name%> says:
+		<%=User.find(message.sender_id).name.split(" ")[0]%> says:
 		<%=message.body%>
 	</li>
 </ul>
